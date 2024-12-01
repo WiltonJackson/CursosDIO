@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Game</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+<body>
+    <h1>Card Game</h1>
+    
+    <h2>Criar novo Guerreiro</h2>
+    <form id="createForm">
+        <input type="text" id="name" placeholder="Name" required />
+        <input type="text" id="to" placeholder="Recipient Address" required />
+        <input type="text" id="img" placeholder="Image URL" required />
+        <button type="submit">Create Guerreiro</button>
+    </form>
+
+    <h2>Atualizar Guerreiro</h2>
+    <form id="updateForm">
+        <input type="number" id="updateId" placeholder="Guerreiro ID" required />
+        <input type="text" id="updateName" placeholder="New Name" required />
+        <input type="text" id="updateImg" placeholder="New Image URL" required />
+        <button type="submit">Update Guerreiro</button>
+    </form>
+
+    <h2>Batalha</h2>
+    <form id="battleForm">
+        <input type="number" id="attackerId" placeholder="Attacker ID" required />
+        <input type="number" id="defenderId" placeholder="Defender ID" required />
+        <button type="submit">batalhar</button>
+    </form>
+
+    <h2>Obter Informações</h2>
+    <form id="getForm">
+        <input type="number" id="getId" placeholder="Guerreiro ID" required />
+        <button type="submit">Obter Informações</button>
+    </form>
+
+    <pre id="output"></pre>
+
+    <script>
+        // Connect to the Ethereum network
+        const contractAddress = '0xc3a9e5cC4fc2B82AA7697Ea6D974e93829a6d438'; // Replace with your contract address
+        const contractABI = [ /* ABI array here */ ]; // Replace with your contract ABI
+
+        let web3;
+        let contract;
+
+        async function initWeb3() {
+            if (window.ethereum) {
+                web3 = new Web3(window.ethereum);
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
+                contract = new web3.eth.Contract(contractABI, contractAddress);
+            } else {
+                alert('Please install MetaMask!');
+            }
+        }
+
+        async function createGuerreiro(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const to = document.getElementById('to').value;
+            const img = document.getElementById('img').value;
+            const accounts = await web3.eth.getAccounts();
+
+            try {
+                await contract.methods.createNewGuerreiro(name, to, img).send({ from: accounts[0] });
+                document.getElementById('output').innerText = 'Guerreiro created successfully!';
+            } catch (error) {
+                document.getElementById('output').innerText = 'Error: ' + error.message;
+            }
+        }
+
+        async function updateGuerreiro(event) {
+            event.preventDefault();
+            const id = document.getElementById('updateId').value;
+            const name = document.getElementById('updateName').value;
+            const img = document.getElementById('updateImg').value;
+            const accounts = await web3.eth.getAccounts();
+
+            try {
+                await contract.methods.updateGuerreiro(id, name, img).send({ from: accounts[0] });
+                document.getElementById('output').innerText = 'Guerreiro updated successfully!';
+            } catch (error) {
+                document.getElementById('output').innerText = 'Error: ' + error.message;
+            }
+        }
+
+        async function battle(event) {
+            event.preventDefault();
+            const attackerId = document.getElementById('attackerId').value;
+            const defenderId = document.getElementById('defenderId').value;
+            const accounts = await web3.eth.getAccounts();
+
+            try {
+                await contract.methods.battle(attackerId, defenderId).send({ from: accounts[0] });
+                document.getElementById('output').innerText = 'Battle completed!';
+            } catch (error) {
+                document.getElementById('output').innerText = 'Error: ' + error.message;
+            }
+        }
+
+        async function getGuerreiro(event) {
+            event.preventDefault();
+            const id = document.getElementById('getId').value;
+
+            try {
+                const result = await contract.methods.getGuerreiro(id).call();
+                document.getElementById('output').innerText = `Name: ${result[0]}, Level: ${result[1]}, Image: ${result[2]}`;
+            } catch (error) {
+                document.getElementById('output').innerText = 'Error: ' + error.message;
+            }
+        }
+
+        document.getElementById('createForm').addEventListener('submit', createGuerreiro);
+        document.getElementById('updateForm').addEventListener('submit', updateGuerreiro);
+        document.getElementById('battleForm').addEventListener('submit', battle);
+        document.getElementById('getForm').addEventListener('submit', getGuerreiro);
+
+        // Initialize Web3 and the contract
+        initWeb3();
+    </script>
+</body>
+</html>
