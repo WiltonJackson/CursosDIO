@@ -1,0 +1,283 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+h1, h2, p, a, button, span, div {
+    font-family: 'Raleway', sans-serif;
+}
+
+body {
+    background-color: #000;
+}
+
+.banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(49, 168, 221, 0.2), rgba(0, 0, 0, 0.6)), url("../images/banner.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    padding: 50px 0 70px;
+    border-bottom: 1px solid #33A8DB;
+}
+
+.banner-image {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid transparent;
+    border-radius: 50%;
+    height: 180px;
+    margin-bottom: 1rem;
+    object-fit: contain;
+    padding: 20px;
+    width: 180px;
+}
+
+.banner-title {
+    background: linear-gradient(180deg, #33A8DB 0%, #1472B7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2rem;
+    font-weight: 900;
+    margin: 0 .5rem 1rem;
+    text-transform: uppercase;
+}
+
+.banner-description {
+    color: #FFF;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    margin: 0 auto 1rem;
+    max-width: 520px;
+    padding: 0 .5rem;
+    text-align: center;
+}
+
+.subscribe {
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-image-source: linear-gradient(#3BA1CD, #1572B7);
+    border-image-repeat: repeat;
+    border-image-slice: 20;
+    color: #31A8DD;
+    text-transform: uppercase;
+    font-size: .75rem;
+    font-weight: 900;
+    letter-spacing: 0.21rem;
+    padding: 1.1875rem 2.375rem;
+    transition: .2s;
+}
+
+.subscribe:hover {
+    background-color: rgba(21, 114, 183, .25);
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .banner-image {
+        height: 250px;
+        width: 250px;
+    }
+
+    .banner-title {
+        font-size: 2.5rem;
+    }
+
+    .banner-description {
+        font-size: 1.25rem;
+        padding: 0;
+    }
+
+    .subscribe {
+        border-image-slice: 30;
+        font-size: 1rem;
+    }
+}
+
+.course-content {
+    border-bottom: 1px solid #33A8DB;
+    text-align: center;
+    padding: 100px 0 70px;
+}
+
+.course-title {
+    color: #33A8DB;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.20rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.course-description, .module {
+    color: #FFF;
+}
+
+.course-description {
+    line-height: 1.25rem;
+    margin: 0 auto 1.5rem;
+    max-width: 800px;
+    padding: 0 .5rem;
+}
+
+.module {
+    background-color: #252525;
+    border: 1px solid #33A8DB;
+    border-radius: 35px;
+    box-shadow: inset -2px 5px 15px #000;
+    padding: 1rem 0;
+    margin: 0 .5rem 1.5rem;
+    max-width: 500px;
+}
+
+.module-highlight {
+    color: #33A8DB;
+    display: block;
+    margin-bottom: .25rem;
+}
+
+@media screen and (min-width: 500px) {
+    .module {
+        margin: 0 auto 1.5rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .course-title {
+        font-size: 2rem;
+    }
+
+    .module-highlight {
+        display: initial;
+        margin-bottom: 0;
+    }
+}
+
+.transform-world {
+    background-attachment: fixed;
+    background-image: url("../images/woman-code.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid #33A8DB;
+    height: 560px;
+}
+
+.transform-world-description {
+    color: #FFF;
+    font-size: 2rem;
+    font-weight: 900;
+    text-shadow: 3px 2px 0px #33A8DB;
+    text-transform: lowercase;
+    line-height: 2.4375rem;
+    padding: 400px 0 0 50px;
+    max-width: 250px;
+}
+
+@media screen and (min-width: 768px) {
+    .transform-world {
+        background-position: initial;
+    }
+
+    .transform-world-description {
+        font-size: 2.5rem;
+        line-height: 2.9375rem;
+        padding: 200px 0 0 200px;
+    }
+}
+
+.professional-challenges {
+    border-bottom: 1px solid #33A8DB;
+    text-align: center;
+    padding: 80px 0 90px;
+}
+
+.challenges-title {
+    color: #33A8DB;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: .1rem;
+    line-height: 1.875rem;
+    margin: 0 auto 4rem;
+    max-width: 800px;
+    padding: 0 .5rem;
+    text-transform: uppercase;
+}
+
+.challenges-image {
+    width: 90vw;
+}
+
+.challenges-description {
+    color: #FFF;
+    line-height: 1.25rem;
+    margin: 2rem auto 0;
+    max-width: 800px;
+    padding: 0 .5rem;
+}
+
+@media screen and (min-width: 768px) {
+    .challenges-title {
+        font-size: 2rem;
+        letter-spacing: .2rem;
+        line-height: 2.375rem;
+    }
+
+    .challenges-image {
+        width: auto;
+    }
+}
+.footer {
+    background-image: linear-gradient(180deg, rgb(0, 0, 0), rgba(51, 168, 219, 0.2));
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.dio-signup {
+    color: #FFF;
+}
+
+.dio-link {
+    color: #33A8DB;
+    font-weight: 700;
+    text-decoration: none;
+}
