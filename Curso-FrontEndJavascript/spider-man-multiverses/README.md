@@ -5,7 +5,7 @@
 
 # Spiderman Multiverses | Curso Front-end da Rihappy na DIO 🚀
 
-![Banner Mundo Invertido](assets/images/title1.png)
+![Banner Mundo Invertido](assets/images/title2.png)
 
  Este repositório é parte do desafio do  **curso Rihappy Front-End** promovida pela [Digital Innovation One (DIO)](https://www.dio.me).
  
