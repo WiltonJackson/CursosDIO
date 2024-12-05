@@ -44,12 +44,17 @@ html[data-theme='light'] .technologies__logo {
   vertical-align: baseline;
   list-style: none;
 }
+html, body {
+  overflow: hidden; /* Impede o scroll */
+  height: 100%; /* Garante que ocupe apenas a altura da janela */
+}
+
 
 body {
   background: var(--primary-bg-color);
   font-family:'Inter', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text-color);
-  background-image: url("../images/wjBackground2.jpg");
+  background-image: url("../images/wjBackground.jpg");
 
 
 }
