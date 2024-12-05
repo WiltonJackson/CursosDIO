@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@200;400&display=swap');
+
+:root, :root[data-theme='dark'] {
+  --primary-color: #F0F0F0;
+
+  --primary-bg-color: #111217;
+  --secondary-bg-color: #28292E;
+  --primary-border-color: #28292E;
+	--secondary-border-color: #56575A;
+
+  --title-color: #F0F0F0;
+  --text-color: #9A9A9C;
+  --link-color: #9A9A9C;
+  --icon-color: #C7C8C9;
+}
+
+:root[data-theme='light'] {
+  --primary-color: #0B0B0F;
+
+	--primary-bg-color: #E9E9E9;
+	--secondary-bg-color: #C7C8C9;
+	--primary-border-color: #C7C8C9;
+	--secondary-border-color: #9A9A9C;
+
+	--title-color: #0B0B0F;
+	--text-color: #28292E;
+	--link-color: #28292E;
+	--icon-color: #56575A;
+}
+
+html[data-theme='light'] .brand__logo {
+  filter: invert(1);
+}
+
+html[data-theme='light'] .technologies__logo {
+  filter: invert(80%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  vertical-align: baseline;
+  list-style: none;
+}
+
+body {
+  background: var(--primary-bg-color);
+  font-family:'Inter', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  background-image: url("../images/wjBackground2.jpg");
+
+
+}
+
+.cabecalho {
+  position:absolute;
+  top: 0%;
+  width: 100vw;
+  height: 5%;
+  background-color: rgb(20, 19, 19);
+  font-size: large;
+  color: white;
+  text-align :center ;
+}
+
+.rodape {
+  position: absolute;
+  bottom:0%;
+  width: 100%;
+  height: 5%;
+  background-color: rgb(20, 19, 19);
+  font-size: large;
+  color: white;
+  text-align :center ;
+}
+
+.figure {
+  border-radius: 50%;
+  width: 40%;
+  height: 100px;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 1px 1px 10px;
+  background-image: url("../images/bird.png");
+  z-index: 100;
+}
