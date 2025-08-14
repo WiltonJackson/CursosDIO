@@ -1,9 +1,17 @@
 # Projeto Conceitual - Sistema de OS Para Oficina Mecânica
 
-## Proposta Inicial
-Sistema de controle e gerenciamento de execução de ordens de serviço em uma oficina mecânica Clientes levam veículos à oficina mecânica para serem consertados ou para passarem por revisões periódicas Cada veículo é designado a uma equipe de mecânicos que identifica os serviços a serem executados e preenche uma OS com data de entrega. A partir da OS, calcula-se o valor de cada serviço, consultando-se uma tabela de referência de mão-de-obra O valor de cada peça também irá compor a OSO cliente autoriza a execução dos serviços A mesma equipe avalia e executa os serviços Os mecânicos possuem código, nome, endereço e especialidade Cada OS possui: n°, data de emissão, um valor, status e uma data para conclusão dos trabalhos.
+## 1. Proposta Inicial
+- Sistema de controle e gerenciamento de execução de ordens de serviço em uma oficina mecânica.
+- Clientes levam veículos à oficina mecânica para serem consertados ou para passarem por revisões periódicas.
+- Cada veículo é designado a uma equipe de mecânicos que identifica os serviços a serem executados e preenche uma OS com data de entrega.
+- A partir da OS, calcula-se o valor de cada serviço, consultando-se uma tabela de referência de mão-de-obra
+- O valor de cada peça também irá compor a OS.
+- O cliente autoriza a execução dos serviços.
+- A mesma equipe avalia e executa os serviços.
+- Os mecânicos possuem código, nome, endereço e especialidade.
+- Cada OS possui: n°, data de emissão, um valor, status e uma data para conclusão dos trabalhos.
 
-## 1. Melhorias Consideradas
+## 2. Melhorias Consideradas
 
 - Controle não só da **Ordem de Serviço (OS)**, mas também do histórico de **serviços** e **peças usadas**.
 - Veículos pertencem a clientes, e um cliente pode ter **mais de um veículo**.
@@ -15,7 +23,7 @@ Sistema de controle e gerenciamento de execução de ordens de serviço em uma o
 
 ---
 
-## 2. Entidades e Atributos
+## 3. Entidades e Atributos
 
 ### Cliente
 - **id_cliente** (PK)
@@ -63,7 +71,7 @@ Sistema de controle e gerenciamento de execução de ordens de serviço em uma o
 - valor_total
 - status *(Aberta, Em execução, Con*
 
-## 3 DER (WorkBench)
+## 4. DER (WorkBench)
 <p align="center">
   <img src="./der.png" alt="Diagrama Entidade-Relacionamento" width="600">
 </p>
