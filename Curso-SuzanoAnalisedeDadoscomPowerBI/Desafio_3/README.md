@@ -1,7 +1,7 @@
 # Suzano - Análise de Dados com Power BI
 ## Diagrama DER 
 
-![DER BANCO ECOMMERCE_WJ](/imagens/Diagrama_ecommerce_wj_v1.png)
+![DER BANCO ECOMMERCE_WJ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/Diagrama_ecommerce_wj_v1.png)
 O arquivo de script para criação do banco está no arquivo criar_banco.sql
 
 ### Querys usadas para persistir os dados
