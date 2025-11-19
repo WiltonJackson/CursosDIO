@@ -19,8 +19,9 @@ JOIN Produto p ON php.Produto_idProduto = p.idProduto
 GROUP BY p.idProduto, p.nome
 ORDER BY total_vendido DESC, faturamento DESC
 LIMIT 15;
-
-
+```
+![Resultado ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
+```sql
 2. Faturamento por mês (2025)
 SELECT 
     DATE_FORMAT(data_pedido, '%Y-%m') AS mes,
@@ -32,7 +33,9 @@ WHERE YEAR(data_pedido) = 2025
   AND status NOT IN ('Cancelado', 'Pendente')
 GROUP BY DATE_FORMAT(data_pedido, '%Y-%m')
 ORDER BY mes;
-
+```
+![Resultado ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
+```sql
 
 3. Estoque baixo (precisa repor urgente)
 SELECT 
@@ -46,7 +49,9 @@ JOIN Estoque e ON ee.Estoque_idEstoque = e.idEstoque
 WHERE (ee.quantidade - ee.reserva) <= 15
   AND p.ativo = TRUE
 ORDER BY disponivel ASC;
-
+```
+![Resultado ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
+```sql
 4. Pedidos pendentes (fila do estoque)
 SELECT 
     p.idPedido,
@@ -62,7 +67,9 @@ ORDER BY
     CASE p.status WHEN 'Em separação' THEN 1 WHEN 'Pago' THEN 2 ELSE 3 END,
     p.data_pedido ASC;
 
-
+```
+![Resultado ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
+```sql
 5. Itens de um pedido específico
 SELECT 
     p.nome,
@@ -73,9 +80,7 @@ FROM Produto_has_Pedido php
 JOIN Produto p ON php.Produto_idProduto = p.idProduto
 WHERE php.Pedido_idPedido = 8;
 ```
-
-![Detalhe completo de um pedido ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
-
+![Resultado ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
 ```sql
 6. Margem de lucro por produto
 SELECT 
@@ -89,8 +94,7 @@ JOIN Produto_has_Fornecedor phf ON p.idProduto = phf.Produto_idProduto
 ORDER BY margem_percent DESC
 LIMIT 20;
 ```
-Mostra quais produtos dão mais lucro
-
+![Resultado ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
 ```sql
 7. Clientes que mais compram (fidelidade)
 SELECT 
@@ -105,8 +109,7 @@ GROUP BY c.idCliente, c.nome, c.telefone
 ORDER BY total_gasto DESC
 LIMIT 15;
 ```
-Ranking dos melhores clientes 
-
+![Resultado ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
 ```sql
 8. Vendas por terceiro vendedor (marketplace)
 SELECT 
@@ -119,8 +122,7 @@ JOIN Terceiro_Vendedor tv ON php.idTerceiro_Vendedor = tv.idTerceiro_Vendedor
 GROUP BY tv.idTerceiro_Vendedor, tv.nome_fantasia, tv.comissao_percentual
 ORDER BY faturamento_bruto DESC;
 ```
-Quanto cada parceiro vendeu e quanto você deve pagar de comissão.
-
+![Resultado ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
 ```sql
 9. Produtos ativos mas sem estoque
 SELECT 
@@ -132,8 +134,7 @@ LEFT JOIN Em_estoque ee ON p.idProduto = ee.Produto_idProduto
 WHERE p.ativo = TRUE 
   AND ee.Produto_idProduto IS NULL;
 ```
-Produtos que estão no site mas zerados — precisa comprar ou desativar.
-
+![Resultado ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
 ```sql
 10. Dashboard rápido do mês atual
 SELECT 'Faturamento Bruto' AS indicador, 
@@ -153,4 +154,6 @@ JOIN Pedido pe ON php.Pedido_idPedido = pe.idPedido
 WHERE pe.status NOT IN ('Cancelado', 'Pendente')
   AND MONTH(pe.data_pedido) = MONTH(CURDATE());
 ```
-Resumo financeiro instantâneo do mês corrente.
+```
+![Resultado ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
+```sql
