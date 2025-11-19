@@ -1,7 +1,7 @@
 # Suzano - Análise de Dados com Power BI
 ## Diagrama DER 
 
-![DER BANCO ECOMMERCE_WJ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/Diagrama_ecommerce_wj_v1.png)
+![DER BANCO ECOMMERCE_WJ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/Diagrama_ecommerce_wj_v1.png)  
 O arquivo de script para criação do banco está no arquivo criar_banco.sql
 
 ### Querys usadas para persistir os dados
@@ -19,7 +19,7 @@ JOIN Produto p ON php.Produto_idProduto = p.idProduto
 GROUP BY p.idProduto, p.nome
 ORDER BY total_vendido DESC, faturamento DESC
 LIMIT 15;
-![Resultado](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_1.png)
+
 
 2. Faturamento por mês (2025)
 SELECT 
@@ -32,7 +32,7 @@ WHERE YEAR(data_pedido) = 2025
   AND status NOT IN ('Cancelado', 'Pendente')
 GROUP BY DATE_FORMAT(data_pedido, '%Y-%m')
 ORDER BY mes;
-![Resumo mensal de faturamento e ticket médio.](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_2.png)
+
 
 3. Estoque baixo (precisa repor urgente)
 SELECT 
@@ -46,8 +46,6 @@ JOIN Estoque e ON ee.Estoque_idEstoque = e.idEstoque
 WHERE (ee.quantidade - ee.reserva) <= 15
   AND p.ativo = TRUE
 ORDER BY disponivel ASC;
-![Produtos com 15 ou menos unidades disponíveis.](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_3.png)
-
 
 4. Pedidos pendentes (fila do estoque)
 SELECT 
@@ -63,7 +61,7 @@ WHERE p.status IN ('Pendente', 'Pago', 'Em separação')
 ORDER BY 
     CASE p.status WHEN 'Em separação' THEN 1 WHEN 'Pago' THEN 2 ELSE 3 END,
     p.data_pedido ASC;
-![Lista de pedidos que precisam ser separados/entregues (prioridade alta no topo)](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_4.png)
+
 
 5. Itens de um pedido específico
 SELECT 
@@ -73,12 +71,14 @@ SELECT
     FORMAT(php.quantidade * php.preco_unitario_vendido, 2) AS subtotal
 FROM Produto_has_Pedido php
 JOIN Produto p ON php.Produto_idProduto = p.idProduto
-WHERE php.Pedido_idPedido = 8;  
+WHERE php.Pedido_idPedido = 8;
+```
+
 ![Detalhe completo de um pedido ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
 
-
+```sql
 6. Margem de lucro por produto
-SQLSELECT 
+SELECT 
     p.nome,
     FORMAT(phf.preco_custo, 2) AS custo,
     FORMAT(p.preco_venda, 2) AS venda,
@@ -88,10 +88,12 @@ FROM Produto p
 JOIN Produto_has_Fornecedor phf ON p.idProduto = phf.Produto_idProduto
 ORDER BY margem_percent DESC
 LIMIT 20;
-Mostra quais produtos dão mais lucro (base para promoções ou renegociação).
+```
+Mostra quais produtos dão mais lucro
 
+```sql
 7. Clientes que mais compram (fidelidade)
-SQLSELECT 
+SELECT 
     c.nome,
     c.telefone,
     COUNT(p.idPedido) AS qtd_pedidos,
@@ -102,10 +104,12 @@ WHERE p.status NOT IN ('Cancelado')
 GROUP BY c.idCliente, c.nome, c.telefone
 ORDER BY total_gasto DESC
 LIMIT 15;
-Ranking dos melhores clientes — ideal para programa de fidelidade.
+```
+Ranking dos melhores clientes 
 
+```sql
 8. Vendas por terceiro vendedor (marketplace)
-SQLSELECT 
+SELECT 
     tv.nome_fantasia AS parceiro,
     COUNT(DISTINCT php.Pedido_idPedido) AS pedidos,
     FORMAT(SUM(php.quantidade * php.preco_unitario_vendido), 2) AS faturamento_bruto,
@@ -114,10 +118,12 @@ FROM Produto_has_Pedido php
 JOIN Terceiro_Vendedor tv ON php.idTerceiro_Vendedor = tv.idTerceiro_Vendedor
 GROUP BY tv.idTerceiro_Vendedor, tv.nome_fantasia, tv.comissao_percentual
 ORDER BY faturamento_bruto DESC;
+```
 Quanto cada parceiro vendeu e quanto você deve pagar de comissão.
 
+```sql
 9. Produtos ativos mas sem estoque
-SQLSELECT 
+SELECT 
     p.idProduto,
     p.nome,
     p.preco_venda
@@ -125,10 +131,12 @@ FROM Produto p
 LEFT JOIN Em_estoque ee ON p.idProduto = ee.Produto_idProduto
 WHERE p.ativo = TRUE 
   AND ee.Produto_idProduto IS NULL;
+```
 Produtos que estão no site mas zerados — precisa comprar ou desativar.
 
+```sql
 10. Dashboard rápido do mês atual
-SQLSELECT 'Faturamento Bruto' AS indicador, 
+SELECT 'Faturamento Bruto' AS indicador, 
        FORMAT(COALESCE(SUM(valor_total), 0), 2) AS valor
 FROM Pedido 
 WHERE status NOT IN ('Cancelado', 'Pendente')
@@ -144,4 +152,5 @@ JOIN Terceiro_Vendedor tv ON php.idTerceiro_Vendedor = tv.idTerceiro_Vendedor
 JOIN Pedido pe ON php.Pedido_idPedido = pe.idPedido
 WHERE pe.status NOT IN ('Cancelado', 'Pendente')
   AND MONTH(pe.data_pedido) = MONTH(CURDATE());
+```
 Resumo financeiro instantâneo do mês corrente.
