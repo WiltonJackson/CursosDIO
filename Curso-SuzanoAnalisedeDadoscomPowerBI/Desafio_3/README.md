@@ -19,7 +19,7 @@ JOIN Produto p ON php.Produto_idProduto = p.idProduto
 GROUP BY p.idProduto, p.nome
 ORDER BY total_vendido DESC, faturamento DESC
 LIMIT 15;
-![Resultado](/imagens/query_1.png1)
+![Resultado](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_1.png)
 
 2. Faturamento por mês (2025)
 SELECT 
@@ -32,10 +32,10 @@ WHERE YEAR(data_pedido) = 2025
   AND status NOT IN ('Cancelado', 'Pendente')
 GROUP BY DATE_FORMAT(data_pedido, '%Y-%m')
 ORDER BY mes;
-Resumo mensal de faturamento e ticket médio.
+![Resumo mensal de faturamento e ticket médio.](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_2.png)
 
 3. Estoque baixo (precisa repor urgente)
-SQLSELECT 
+SELECT 
     p.idProduto,
     p.nome,
     e.local,
@@ -46,10 +46,11 @@ JOIN Estoque e ON ee.Estoque_idEstoque = e.idEstoque
 WHERE (ee.quantidade - ee.reserva) <= 15
   AND p.ativo = TRUE
 ORDER BY disponivel ASC;
-Produtos com 15 ou menos unidades disponíveis (já descontando reservas).
+![Produtos com 15 ou menos unidades disponíveis.](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_3.png)
+
 
 4. Pedidos pendentes (fila do estoque)
-SQLSELECT 
+SELECT 
     p.idPedido,
     c.nome AS cliente,
     c.telefone,
@@ -62,18 +63,19 @@ WHERE p.status IN ('Pendente', 'Pago', 'Em separação')
 ORDER BY 
     CASE p.status WHEN 'Em separação' THEN 1 WHEN 'Pago' THEN 2 ELSE 3 END,
     p.data_pedido ASC;
-Lista de pedidos que precisam ser separados/entregues (prioridade alta no topo).
+![Lista de pedidos que precisam ser separados/entregues (prioridade alta no topo)](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_4.png)
 
 5. Itens de um pedido específico
-SQLSELECT 
+SELECT 
     p.nome,
     php.quantidade,
     FORMAT(php.preco_unitario_vendido, 2) AS preco_unitario,
     FORMAT(php.quantidade * php.preco_unitario_vendido, 2) AS subtotal
 FROM Produto_has_Pedido php
 JOIN Produto p ON php.Produto_idProduto = p.idProduto
-WHERE php.Pedido_idPedido = 8;  -- ← trocar o número do pedido
-Detalhe completo de um pedido (ótimo para nota fiscal ou controle de separação).
+WHERE php.Pedido_idPedido = 8;  
+![Detalhe completo de um pedido ](https://github.com/WiltonJackson/CursosDIO/blob/master/Curso-SuzanoAnalisedeDadoscomPowerBI/Desafio_3/imagens/query_5.png)
+
 
 6. Margem de lucro por produto
 SQLSELECT 
