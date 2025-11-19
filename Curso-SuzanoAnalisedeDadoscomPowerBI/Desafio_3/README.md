@@ -1,7 +1,7 @@
 # Suzano - Análise de Dados com Power BI
 ## Diagrama DER 
 
-\imagens\Diagrama_ecommerce_wj_v1.png
+![DER BANCO ECOMMERCE_WJ](/imagens/Diagrama_ecommerce_wj_v1.png)
 O arquivo de script para criação do banco está no arquivo criar_banco.sql
 
 ### Querys usadas para persistir os dados
@@ -9,7 +9,7 @@ O arquivo de script para criação do banco está no arquivo criar_banco.sql
 ```sql
 1. Produtos mais vendidos (ranking geral)
 
-SQLSSELECT
+SELECT
     p.idProduto,
     p.nome,
     SUM(php.quantidade) AS total_vendido,
@@ -19,9 +19,10 @@ JOIN Produto p ON php.Produto_idProduto = p.idProduto
 GROUP BY p.idProduto, p.nome
 ORDER BY total_vendido DESC, faturamento DESC
 LIMIT 15;
+![Resultado](/imagens/query_1.png1)
 
 2. Faturamento por mês (2025)
-SQLSELECT 
+SELECT 
     DATE_FORMAT(data_pedido, '%Y-%m') AS mes,
     COUNT(*) AS total_pedidos,
     FORMAT(SUM(valor_total), 2) AS faturamento,
